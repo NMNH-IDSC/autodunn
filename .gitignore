@@ -3,5 +3,7 @@ __pycache__
 groups
 letters
 
-preflight.xlsx
 *.xml
+
+autodunn.log
+preflight.xlsx
