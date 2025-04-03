@@ -1,0 +1,10 @@
+name: autodunn
+channels:
+- conda-forge
+- defaults
+dependencies:
+- python >= 3.13
+- pip
+- pip:
+  - xmu
+  - git+https://github.com/adamancer/nmnh_ms_tools

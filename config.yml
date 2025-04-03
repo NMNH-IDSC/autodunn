@@ -1,0 +1,100 @@
+# No tabs! Use four spaces to indent.
+
+# Email for the staff member who is dunning the loans. The email given here
+# must match an entry in the contacts list below.
+dunner: 
+
+# Date used to assess whether a loan is overdue as YYYY-MM-DD. Any loan with a due
+# date before this date plus the number of days specified in grace_period is overdue.
+# Defaults to yesterday if no date is provided. 
+overdue_date: 
+
+# Date used to assess whether a loan should be recalled as YYYY-MM-DD. Any loan with
+# a due date before this date is subject to recall. Defaults to two years ago if no
+# date is provided. Recalls omit instructions for renewing the loan.
+recall_date:
+
+# Number of days after the official due date before which a loan is considered overdue
+grace_period: 30
+
+# Number of days between interactions. A loan recipient will not received additional
+# dunns from this script until this many days have passed since the last interaction
+# recorded in EMu.
+num_days: 180
+
+# Sets number of dunning letters after which to warn the requester
+warn: 1
+
+# Sets the number of dunning letters after which to escalate to a supervisor.
+# Three-ish letters is a reasonable grace period. If zero, the script will not
+# escalate no matter how many letters have gone unanswered. Otherwise, the
+# script will either prompt you for a supervisor email for each escalated
+# transaction or pull the supervisor email from the SupervisorEmail column of
+# preflight.xlsx.
+escalate: 5
+
+# Remove closed transactions from the preflight file. This will clear any data
+# in SupervisorEmail and DoNotDunn.
+remove_closed_transactions: True
+
+# Specifies whether to run the script in debug mode, which will generate but
+# not distribute the dunning emails
+debug: True
+
+# If debug is True, sends a copy of each dunning email to the email address
+# for the staff member defined under dunner above.
+send_to_me: False
+
+# Allows user to view and verify (but not edit) each email before sending
+safe_send: False
+
+# Specify a single transaction to debug. Leave empty otherwise.
+debug_num:
+
+# A comma-delimited list of dept/division codes to skip when generating the
+# preflight file
+exclude_codes: []
+  
+# Excludes loans that are not overdue from the preflight sheet. These loans will
+# not be dunned, but including them on the preflight sheet allows errors to be
+# spotted.
+show_overdue_only: False
+
+# Maps the name or affiliation of the transaction initiator to the appropriate
+# dept/division code. Unmapped initiators will produce an error at runtime. You
+# can also use the default key to force a particular department/division if the
+# script encounters an unrecognized initiator.
+initiators:
+    Name: CODE
+
+# Maps dept/division codes to the appropriate contact. Unmapped codes will
+# produce an error at runtime.
+map_contacts:
+    CODE: example@example.com
+
+# Collections contacts. All fields should be filled in.
+contacts:
+    example@example.com:
+        name: 
+        title: 
+        dept: 
+        phone_num: 
+        email: 
+        mrc: 
+
+
+mailing_address: |
+    {dept}
+    Attn: {name}
+    Smithsonian Institution
+    National Museum of Natural History
+    PO Box 37012, MRC {mrc}
+    Washington, DC 20013-7012
+
+shipping_address: |
+    {dept}
+    Attn: {name}
+    Smithsonian Institution
+    National Museum of Natural History
+    10th & Constitution NW
+    Washington, DC 20560-0{mrc}

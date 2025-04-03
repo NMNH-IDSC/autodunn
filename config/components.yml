@@ -1,0 +1,112 @@
+default:
+    greeting: <p>{greeting}</p>
+    intro: >
+        <p>The following loan of scientific specimens from the Smithsonian
+        Institution to {recipient} expired on <b>{due_date}</b> and must be
+        renewed or returned:</p>
+    action: >
+        <p>Please respond to this email by <b>{return_date}</b> by completing
+        one of the following actions:</p>
+        <ul>
+        <li>If you no longer require the outstanding material, please return it
+        by either:<br><br>
+        <ul>
+        <li>Mailing it via USPS to the following address:<br><br>
+        <blockquote>{coll_mailing_address}</blockquote></li>
+        <li>Shipping it via courier (like FedEx, UPS, or DHL) to the following
+        address:<br><br>
+        <blockquote>{coll_shipping_address}</blockquote></li>
+        </ul>
+        </li>
+        <li>If you would like to extend the loan, please contact
+        <a href="mailto:{coll_email}">{coll_name}</a> with the reason and
+        desired duration for the extension. If the extension is not granted,
+        however, please be prepared to return the loaned material by the above
+        date.</li>
+        <li>If you have already returned the objects, believe you have received
+        this notice in error, or are otherwise unable to resolve this loan,
+        please reply to this email so we can update our records</li>
+        </ul>
+    data_return: >
+        <p><b>Have you submitted data generated from this loan to the
+        Smithsonian?</b> If you have not already done so, please send copies of
+        any papers or data based on this loan to
+        <a href="mailto:NMNH-MinSciRegistrar@si.edu">NMNH-MinSciRegistrar@si.edu</a>.
+        If data is currently embargoed, please note that in your email, along with
+        the end date for the embargo.</p>
+    org_change: >
+        According to our records, {orig_contact} is no longer affiliated
+        with {org}; however, your organization was the original recipient of
+        the loan and is responsible for its return.
+reminder:
+    intro: >
+        <p>The following loan of scientific specimens from the Smithsonian
+        Institution to {recipient} is due to be returned on <b>{due_date}</b>.
+        Please arrange to either return the loaned items or renew the loan
+        before that date.</p>
+warn:
+    escalate: >
+        <p class="escalation">This is the {nth} notice for this loan since its
+        due date or last extension. Future notices may be sent to the
+        administration of the organization to which the material was loaned.
+        Failure to return the outstanding material may prevent them from
+        receiving loans from the Smithsonian in the future.</p>
+escalate:
+    greeting: '<p>To whom it may concern:</p>'
+    intro: >
+        <p>A loan of scientific specimens from the Smithsonian Institution to
+        your organization expired on <b>{due_date}</b> and has been
+        recalled. We have not been able to reach the original contact for the
+        loan, {name}, and we hope that you will be able to assist us in
+        tracking down the missing specimens. Details of the loan are as
+        follows:</p>
+    escalate: >
+        <p class="escalation">This is the {nth} notice for this loan since its
+        due date or last extension.{org_change} Failure to return the loaned
+        material may prevent your organization from receiving loans from the
+        Smithsonian in the future.</p>
+    action: >
+        <p>Please return the loaned material by <b>{return_date}</b> by either:</p>
+        <ul>
+        <li>Mailing it via USPS to the following address:<br><br>
+        <blockquote>{coll_mailing_address}</blockquote></li>
+        <li>Shipping it via courier (like FedEx, UPS, or DHL) to the following
+        address:<br><br>
+        <blockquote>{coll_shipping_address}</blockquote></li>
+        </ul>
+        <p><b>Are you unable to assist with this request?</b> If you have already
+        returned the objects, believe you have received this notice in error, or
+        are otherwise unable to resolve this loan, please reply to this email so
+        we can update our records.</p>
+recall:
+    intro: >
+        <p>The following loan of scientific specimens from the Smithsonian
+        Institution to {recipient} expired on <b>{due_date}</b> and has been
+        recalled:</p>
+    action: >
+        <p>Please return the loaned material by <b>{return_date}</b> by either:</p>
+        <ul>
+        <li>Mailing it via USPS to the following address:<br><br>
+        <blockquote>{coll_mailing_address}</blockquote></li>
+        <li>Shipping it via courier (like FedEx, UPS, or DHL) to the following
+        address:<br><br>
+        <blockquote>{coll_shipping_address}</blockquote></li>
+        </ul>
+        <p><b>Are you unable to assist with this request?</b> If you have already
+        returned the objects, believe you have received this notice in error, or
+        are otherwise unable to resolve this loan, please reply to this email so
+        we can update our records.</p>
+new_contact:
+    intro:
+        <p>A loan of scientific specimens from the Smithsonian Institution to a
+        member of your organization expired on <b>{due_date}</b> and must be
+        renewed or returned. You are currently listed as the contact for the
+        expired loan. Details of the loan are as follows:</p>
+deceased_contact:
+    intro:
+        <p>A loan of scientific specimens from the Smithsonian Institution to a
+        member of your organization expired on <b>{due_date}</b> and must be
+        renewed or returned. Unfortunately, the original contact for the loan,
+        {orig_contact}, has passed away. We hope that you will be able to help us
+        locate and return the outstanding specimens from this loan. Details of the
+        loan are as follows:</p>

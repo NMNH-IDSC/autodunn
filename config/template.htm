@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dunning Letter</title>
+<meta charset="UTF-8">
+<style>
+body {{ font: 10pt arial; }}
+table {{ font: 9pt arial; border-collapse: collapse; }}
+th {{ background-color: #eee; font-weight: bold; }}
+th, td {{ font: 9pt arial; text-align: center; padding: 4px; border: 1px solid #ccc; }}
+h2 {{ font-size: 11pt; padding: 0; margin: 0; }}
+p, ul, li {{ padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0; }}
+blockquote {{ padding: 0; margin: 0; }}
+span.metadata {{ display: inline-block; width: 8%; min-width: 80px; font-weight: bold; }}
+p.escalation {{ color: red; font-weight: bold; }}
+div.sig {{ font: 9pt arial; }}
+div.sig a {{ color: #000; text-decoration: none; }}
+</style>
+</head>
+<body>
+{greeting}
+{intro}
+{summary}
+{escalation}
+{action}
+{data_return}
+<p>We appreciate your time and effort in ensuring the prompt return of this
+material to the Smithsonian.</p>
+<p>Sincerely,<br>
+{sender}</p>
+<br>
+<div class="sig">
+<b>{coll_name}</b><br>
+{coll_title}<br>
+Department of {coll_dept}<br>
+<a href="mailto:{coll_email}">{coll_email}</a>
+<br><br>
+<span style="color: #00c1d5;">SMITHSONIAN INSTITUTION</span><br>
+<span style="color: #00778b;">NATIONAL MUSEUM OF NATURAL HISTORY</span><br>
+<a href="https://www.facebook.com/nmnh.fanpage/">Facebook</a> | <a href="https://twitter.com/NMNH">Twitter</a> | <a href="https://www.instagram.com/smithsoniannmnh/">Instagram</a>
+</div>
+</body>
+</html>
