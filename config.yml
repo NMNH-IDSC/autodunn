@@ -1,8 +1,8 @@
 # No tabs! Use four spaces to indent.
 
 # Email for the staff member who is dunning the loans. The email given here
-# must match an entry in the contacts list below.
-dunner: 
+# must match an entry in the contacts list below and must be available as an
+# Outook profile on the computer being used to send the dunns.
 
 # Date used to assess whether a loan is overdue as YYYY-MM-DD. Any loan with a due
 # date before this date plus the number of days specified in grace_period is overdue.

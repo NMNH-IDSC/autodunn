@@ -2,15 +2,29 @@
 
 ## Installation
 
-1. Install mambaforge
-2. Install a text editor
-3. Install the environment
+First install the following software:
 
-If you will be using a different network accounts to send dunns, you will also need to set up a profile for that account in Outlook.
+- [mambaforge](https://github.com/conda-forge/miniforge)
+- [git](https://git-scm.com/downloads)
+- [VS Code](https://code.visualstudio.com/download)
+
+We'll use git to download autodunn. Open the Miniforge Prompt. By default, Miniforge Prompt opens in your home directory. If you want to download the script files to a different locations, use the `cd` command to change the directory.
+
+```
+cd /path/to/directory
+git clone https://github.com/NMNH-IDSC/autodunn
+```
+
+Next we'll use mamba to set up the environment:
+
+```
+cd /path/to/directory
+mamba create -f environment.yml
+```
+
+If you will be using a different network account to send dunns, you will also need to set up a profile for that account in Outlook.
 
 ## Usage
-
-Record the path to the autodunn directory, which should also be the directory that contains this file. The instructions below use `path/to/directory` to refer to this directory.
 
 In EMu:
 
@@ -32,11 +46,11 @@ As the script runs, it produces three outputs:
 
 - **autodunn.log** logs information about the script
 - **groups** contains imports for the EMu Groups module. If imported into EMu, they can be used to view records that were processed by the autodunn script. Successful and failed dunns are recorded in separate files.
-- **letters** contains HTML files with the letters produced for each transaction. When the script is run in debug mode, these can be used to review the emails before they go out.
+- **letters** contains HTML files with the letters produced for each transaction. These are generated when the script is run in debug mode and can be used to review the emails before they go out.
 
-Dunns must be recorded in EMu manually. The most accurate way to do this is to look through the sent mail on the account that was used to send the dunns. This allows you to verify that each email went out as expected and to catch bouncebacks. 
+**Dunns must be recorded in EMu manually.** The most accurate way to do this is to look through the sent mail on the account that was used to send the dunns. This allows you to verify that each email went out as expected and to catch bouncebacks. 
 
-If a run is interrupted, it is generally best to update the completed dunns in EMu and re-export. The script attempts to catch these transactions based on the XML files in the groups folder, but updating EMu is the safest way to avoid accidentally sending duplicate dunning emails.
+If a run is interrupted, it is safest to update the completed dunns in EMu and re-export before sending additional dunns. The script attempts to catch these transactions based on the XML files in the groups folder, but updating EMu is the best way to avoid accidentally sending duplicate dunning emails.
 
 ### Configuration
 
@@ -50,7 +64,9 @@ The template.htm and components.yml files in the configuration directory allow y
 
 ### Preflight file
 
-The preflight file is an Excel workbook that contains basic metadata about each loan that can be used to review dunns before they are sent. Loan metadata is pulled directly from EMu, and changes to most columns will be overwritten the next time the autodunn script is run. However, two columns can be overwritten manually. Changes to these fields will be retained the next time the script it run, except for the special case noted in the description of DoNotDunn.
+The preflight file is an Excel workbook that contains basic metadata about each loan that can be used to review dunns before they are sent. Loan metadata is pulled directly from EMu, and changes to most columns will be overwritten the next time the autodunn script is run. However, two columns can be overwritten manually:
 
 - **SupervisorEmail** allows you to specify the email address for a recipient's supervisor to be used when escalating. Data in this field should only be populated when needed and will not be used unless the dunn is escalated.
 - **DoNotDunn** allows you to mark a loan that should not be dunned, for example, because a staff member is aware that it is already being prepped for return. The script will populate this field if there is an error with the loan record, for example, a missing email address. When the script populates this field, it uses the prefix \[AUTODUNN\]. Entries with this prefix will be overwritten by the autodunn script the next time it is run. All other entries are retained.
+
+Changes to these fields will be retained the next time the script it run, except for the special case noted for DoNotDunn above.
