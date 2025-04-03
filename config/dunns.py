@@ -115,10 +115,13 @@ class Dunn(LoanOutgoing):
         if self.escalate():
             supervisor = self.get_supervisor(preflight, dunn_info)
 
+        # Customize intro based on whether this is a reminder
+        intro_key = "intro_due" if self.is_overdue() else "intro_reminder"
+
         # Update the mask with the components defined in the config file
         components = {
             "greeting": self.get_component("greeting", **dunn_info),
-            "intro": self.get_component("intro", **dunn_info),
+            "intro": self.get_component(intro_key, **dunn_info),
             "summary": self.summarize(),
             "escalation": self.get_component("escalate", **dunn_info),
             "action": self.get_component("action", **dunn_info),
@@ -134,11 +137,11 @@ class Dunn(LoanOutgoing):
             self.orig_contact and self.orig_contact.is_deceased()
         ):
             components["intro"] = self.get_component(
-                "intro", "deceased_contact", **dunn_info
+                intro_key, "deceased_contact", **dunn_info
             )
         elif self.contact["NamLast"] != self.orig_contact["NamLast"]:
             components["intro"] = self.get_component(
-                "intro", "new_contact", **dunn_info
+                intro_key, "new_contact", **dunn_info
             )
 
         # Construct the email from the components
@@ -220,10 +223,13 @@ class Dunn(LoanOutgoing):
     def get_component(self, key, level=None, **kwargs):
         """Returns the formatted string for part of the dunning email"""
 
-        print(key, level)
-
         if level is None:
             level = self.level
+
+        # HACK: Reminder is a useful label but the only change is managed through
+        # the label for the into. Process as default.
+        if level == "reminder":
+            level = "default"
 
         # HACK: Show the too-many-dunns warning even when recalling the loan
         if level == "recall" and key == "escalate":

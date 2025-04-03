@@ -123,7 +123,7 @@ if __name__ == "__main__":
             if Dunn.trn_config["debug_num"] and tranum != Dunn.trn_config["debug_num"]:
                 continue
             # Filter out loans that have been dunned since the last export
-            if loan["irn"] in irns:
+            if not Dunn.trn_config["debug_num"] and loan["irn"] in irns:
                 msg = f"{loan['TraNumber']}: Dunn already processed"
                 logging.info(msg)
                 print(msg)

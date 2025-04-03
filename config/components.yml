@@ -1,9 +1,14 @@
 default:
     greeting: <p>{greeting}</p>
-    intro: >
+    intro_due: >
         <p>The following loan of scientific specimens from the Smithsonian
         Institution to {recipient} expired on <b>{due_date}</b> and must be
         renewed or returned:</p>
+    intro_reminder: >
+        <p>The following loan of scientific specimens from the Smithsonian
+        Institution to {recipient} is due to be returned on <b>{due_date}</b>.
+        Please arrange to either return the loaned items or renew the loan
+        before that date.</p>
     action: >
         <p>Please respond to this email by <b>{return_date}</b> by completing
         one of the following actions:</p>
@@ -37,13 +42,7 @@ default:
     org_change: >
         According to our records, {orig_contact} is no longer affiliated
         with {org}; however, your organization was the original recipient of
-        the loan and is responsible for its return.
-reminder:
-    intro: >
-        <p>The following loan of scientific specimens from the Smithsonian
-        Institution to {recipient} is due to be returned on <b>{due_date}</b>.
-        Please arrange to either return the loaned items or renew the loan
-        before that date.</p>
+        the loan and is responsible for its return.   
 warn:
     escalate: >
         <p class="escalation">This is the {nth} notice for this loan since its
@@ -97,13 +96,19 @@ recall:
         are otherwise unable to resolve this loan, please reply to this email so
         we can update our records.</p>
 new_contact:
-    intro:
-        <p>A loan of scientific specimens from the Smithsonian Institution to a
-        member of your organization expired on <b>{due_date}</b> and must be
-        renewed or returned. You are currently listed as the contact for the
+    intro_due:
+        <p>A loan of scientific specimens from the Smithsonian Institution originally
+        made to another member of your organization is due on <b>{due_date}</b> and
+        must be renewed or returned. You are currently listed as the contact for the
         expired loan. Details of the loan are as follows:</p>
+    intro_reminder:
+        <p>A loan of scientific specimens from the Smithsonian Institution originally
+        made to another member of your organization is due on <b>{due_date}</b>.
+        You are listed as the current contact for this loan. Please arrange to either
+        return the loaned items or renew the loan before that date. Details of the
+        loan are as follows:</p>
 deceased_contact:
-    intro:
+    intro_due:
         <p>A loan of scientific specimens from the Smithsonian Institution to a
         member of your organization expired on <b>{due_date}</b> and must be
         renewed or returned. Unfortunately, the original contact for the loan,
